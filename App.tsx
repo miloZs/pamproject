@@ -1,10 +1,19 @@
 import React, { useEffect, useState } from 'react';
-import { View, TextInput, ScrollView, Text, TouchableOpacity, StyleSheet } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import {
+  View,
+  TextInput,
+  ScrollView,
+  Text,
+  TouchableOpacity,
+  StyleSheet,
+  Dimensions,
+  Image,
+} from 'react-native';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+
 import Pokemon from './components/Pokemon';
 
-const Stack = createNativeStackNavigator();
+const { width } = Dimensions.get('window');
 
 export default function App() {
   const [searchText, setSearchText] = useState('');
@@ -40,23 +49,48 @@ export default function App() {
     setShowPokemon(false);
   };
 
+  const getPokemonImage = (pokemonName: string) => {
+    return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemonList.findIndex(
+      (pokemon) => pokemon.name === pokemonName
+    ) + 1}.png`;
+  };
+
   return (
     <View style={styles.container}>
       {!showPokemon ? (
         <ScrollView contentContainerStyle={styles.scrollContainer}>
-          <TextInput
-            style={styles.input}
-            onChangeText={handleSearch}
-            value={searchText}
-            placeholder="Search Pokemon..."
-          />
+          <View style={styles.headerContainer}>
+            <Text style={styles.headerText}>Pokédex</Text>
+            <View style={styles.searchContainer}>
+              <TextInput
+                style={styles.input}
+                onChangeText={handleSearch}
+                value={searchText}
+                placeholder="Search Pokemon..."
+                placeholderTextColor="#ccc"
+              />
+              <TouchableOpacity>
+                <Icon name="magnify" size={30} color="#ccc" style={styles.lensIcon} />
+              </TouchableOpacity>
+            </View>
+          </View>
+          <View style={{ marginBottom: 20 }} />
           {filteredPokemonList && filteredPokemonList.length > 0 ? (
             filteredPokemonList.map((pokemon, index) => (
               <TouchableOpacity
                 key={index}
                 onPress={() => switchToPokemon(pokemon.name)}
+                style={styles.pokemonItem}
               >
-                <Text style={styles.text}>{pokemon.name}</Text>
+                <Image
+                  source={{ uri: getPokemonImage(pokemon.name) }}
+                  style={styles.pokemonImage}
+                />
+                <View>
+                  <Text style={styles.pokemonText}>
+                    #{index + 1} - {pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)}
+                  </Text>
+                </View>
               </TouchableOpacity>
             ))
           ) : (
@@ -73,24 +107,84 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: '#333',
   },
   scrollContainer: {
     flexGrow: 1,
-    justifyContent: 'center',
+  },
+  headerContainer: {
+    backgroundColor: '#e3350d',
+    paddingTop: 50,
+    paddingBottom: 15,
+    paddingHorizontal: 16,
+    borderBottomLeftRadius: 20,
+    borderBottomRightRadius: 20,
     alignItems: 'center',
-    paddingTop: 50, 
-    paddingBottom: 50, 
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.8,
+    shadowRadius: 4,
+    elevation: 5,
+  },
+  headerText: {
+    color: '#fff',
+    fontSize: 36,
+    fontWeight: 'bold',
+    marginBottom: 10,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.8,
+    shadowRadius: 4,
+    elevation: 5,
+  },
+  searchContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: '#fff',
+    borderRadius: 10,
+    paddingHorizontal: 10,
   },
   input: {
+    flex: 1,
     height: 40,
-    borderColor: 'gray',
-    borderWidth: 1,
-    marginBottom: 16,
-    paddingLeft: 8,
-    marginTop: 20,
+    paddingVertical: 5,
+    paddingLeft: 10,
+    fontSize: 16,
+    color: '#fff',
+    width: width - 32,
+  },
+  lensIcon: {
+    marginLeft: 10,
+  },
+  pokemonItem: {
+    marginBottom: 8,
+    backgroundColor: '#444',
+    borderRadius: 10,
+    padding: 16,
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginHorizontal: 16,
+  },
+  pokemonImage: {
+    width: 50,
+    height: 50,
+    marginRight: 10,
+  },
+  pokemonText: {
+    fontSize: 18,
+    color: '#fff',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.8,
+    shadowRadius: 4,
+    elevation: 5,
   },
   text: {
     textAlign: 'center',
-    marginBottom: 8,
+    fontSize: 18,
+    color: '#fff',
+    marginTop: 20,
   },
 });
+
+
