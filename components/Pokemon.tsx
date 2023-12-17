@@ -83,7 +83,7 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.8,
     shadowRadius: 4,
-    elevation: 5, 
+    elevation: 5,
   },
   headerText: {
     color: '#fff',
@@ -92,7 +92,6 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     textShadowColor: '#000',
     textShadowOffset: { width: 0, height: 2 },
-    textShadowOpacity: 0.8,
     textShadowRadius: 4,
   },
   imageContainer: {
@@ -128,7 +127,6 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     textShadowColor: '#000',
     textShadowOffset: { width: 0, height: 2 },
-    textShadowOpacity: 0.8,
     textShadowRadius: 4,
   },
   button: {
@@ -142,7 +140,7 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.8,
     shadowRadius: 4,
-    elevation: 5, 
+    elevation: 5,
   },
   buttonText: {
     fontSize: 16,
@@ -150,7 +148,6 @@ const styles = StyleSheet.create({
     color: '#fff',
     textShadowColor: '#000',
     textShadowOffset: { width: 0, height: 2 },
-    textShadowOpacity: 0.8,
     textShadowRadius: 4,
   },
 });

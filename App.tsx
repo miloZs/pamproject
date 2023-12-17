@@ -150,7 +150,7 @@ const styles = StyleSheet.create({
     paddingVertical: 5,
     paddingLeft: 10,
     fontSize: 16,
-    color: '#fff',
+    color: '#000', // Change the color here
     width: width - 32,
   },
   lensIcon: {
@@ -173,6 +173,9 @@ const styles = StyleSheet.create({
   pokemonText: {
     fontSize: 18,
     color: '#fff',
+    textShadowColor: '#000',
+    textShadowOffset: { width: 0, height: 2 },
+    textShadowRadius: 4,
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.8,
@@ -186,5 +189,3 @@ const styles = StyleSheet.create({
     marginTop: 20,
   },
 });
-
-
