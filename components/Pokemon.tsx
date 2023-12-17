@@ -22,7 +22,6 @@ const Pokemon: React.FC<PokemonProps> = ({ pokemonName, switchToMain }) => {
       .catch((error) => console.error('Error fetching Pokemon data:', error));
   }, [pokemonName]);
 
-  if (!pokemonData) {
     return (
       <View style={styles.container}>
         <Text>Loading...</Text>
