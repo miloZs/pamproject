@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { TapGestureHandler, RotationGestureHandler } from 'react-native-gesture-handler';
 import {
   View,
   TextInput,
@@ -12,6 +13,7 @@ import {
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import Pokemon from './components/Pokemon';
+import 'react-native-gesture-handler';
 
 const { width } = Dimensions.get('window');
 
@@ -150,7 +152,7 @@ const styles = StyleSheet.create({
     paddingVertical: 5,
     paddingLeft: 10,
     fontSize: 16,
-    color: '#000', // Change the color here
+    color: '#000', 
     width: width - 32,
   },
   lensIcon: {
